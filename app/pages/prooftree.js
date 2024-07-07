@@ -1,8 +1,12 @@
 console.log("ProofTree v0.0.1");
-const B = "div.prooftree,div.prtr-proof-tree{width:fit-content;margin:20px auto}div.prtr-sequent{width:auto;text-align:center}div.prtr-premises{width:auto;display:flex;flex-direction:row;gap:20px;align-items:flex-end}div.prtr-horizontal-rule{width:100%;border-bottom:1.3px solid;position:relative}div.prtr-horizontal-rule>.prtr-right-label{position:absolute;height:auto;top:-50%;right:0;-webkit-transform:translateY(-50%);transform:translateY(-50%)}", q = () => {
+const v = "div.prooftree,div.prtr-proof-tree{width:fit-content;margin:20px auto}div.prtr-sequent{width:auto;text-align:center}div.prtr-premises{width:auto;display:flex;flex-direction:row;gap:20px;align-items:flex-end}div.prtr-horizontal-rule{width:100%;border-bottom:1.3px solid;position:relative}div.prtr-horizontal-rule>.prtr-right-label{position:absolute;height:auto;top:-50%;right:0;-webkit-transform:translateY(-50%);transform:translateY(-50%)}", X = () => {
+  console.log("renderProofTreesOnLoad"), document.addEventListener("DOMContentLoaded", function() {
+    B();
+  });
+}, B = () => {
   console.log("renderProofTrees");
   const t = document.createElement("style");
-  t.innerHTML = B, document.head.appendChild(t);
+  t.innerHTML = v, document.head.appendChild(t);
   const e = Array.from(
     document.body.getElementsByTagName("P")
   );
@@ -10,14 +14,14 @@ const B = "div.prooftree,div.prtr-proof-tree{width:fit-content;margin:20px auto}
   const o = e.filter(
     (n) => n.innerHTML.includes("\\begin{prooftree}")
   );
-  console.log("filtered nodes", o), console.log(o.map((n) => C(n))), o.forEach((n) => L(n));
-}, L = (t) => {
+  console.log("filtered nodes", o), console.log(o.map((n) => C(n))), o.forEach((n) => w(n));
+}, w = (t) => {
   const e = C(t);
   if (!e) {
     console.log("cannot find fragment");
     return;
   }
-  const o = v(e);
+  const o = O(e);
   if (console.log(o), !o) {
     console.log("parsing error");
     return;
@@ -27,13 +31,13 @@ const B = "div.prooftree,div.prtr-proof-tree{width:fit-content;margin:20px auto}
     console.log("parsing error");
     return;
   }
-  e == null || e.nodeList.slice(1).forEach((s) => {
+  e == null || e.nodeList.slice(1).forEach((r) => {
     var i;
-    return (i = s.parentNode) == null ? void 0 : i.removeChild(s);
+    return (i = r.parentNode) == null ? void 0 : i.removeChild(r);
   }), console.log(n);
-  const r = R(n);
-  t.insertBefore(e == null ? void 0 : e.beforeTextNode, e == null ? void 0 : e.nodeList[0]), t.insertBefore(r, e == null ? void 0 : e.nodeList[0]), t.insertBefore(e == null ? void 0 : e.afterTextNode, e == null ? void 0 : e.nodeList[0]), t.removeChild(e == null ? void 0 : e.nodeList[0]), setTimeout(O, 0), t.innerHTML.includes("\\begin{prooftree}") && L(t);
-}, w = (t, e) => {
+  const s = R(n);
+  t.insertBefore(e == null ? void 0 : e.beforeTextNode, e == null ? void 0 : e.nodeList[0]), t.insertBefore(s, e == null ? void 0 : e.nodeList[0]), t.insertBefore(e == null ? void 0 : e.afterTextNode, e == null ? void 0 : e.nodeList[0]), t.removeChild(e == null ? void 0 : e.nodeList[0]), setTimeout($, 0), t.innerHTML.includes("\\begin{prooftree}") && w(t);
+}, L = (t, e) => {
   let o = -1, n = -1;
   for (let l = 0; l < e.length; l++)
     if (e[l].nodeType === Node.TEXT_NODE) {
@@ -44,14 +48,14 @@ const B = "div.prooftree,div.prtr-proof-tree{width:fit-content;margin:20px auto}
       }
     }
   if (o === -1) return null;
-  const r = e[n].nodeValue, s = r.slice(0, o), i = r.slice(o + t.length), c = document.createTextNode(s), h = document.createTextNode(i);
+  const s = e[n].nodeValue, r = s.slice(0, o), i = s.slice(o + t.length), c = document.createTextNode(r), h = document.createTextNode(i);
   return [n, c, h];
 }, C = (t) => {
-  const e = Array.from(t.childNodes), o = w("\\begin{prooftree}", e);
+  const e = Array.from(t.childNodes), o = L("\\begin{prooftree}", e);
   if (o === null) return null;
-  const [n, r, s] = o, i = e.slice(n), c = [...i];
-  c.splice(0, 1, s);
-  const h = w("\\end{prooftree}", c);
+  const [n, s, r] = o, i = e.slice(n), c = [...i];
+  c.splice(0, 1, r);
+  const h = L("\\end{prooftree}", c);
   if (h === null) return null;
   const [l, u, a] = h, d = i.slice(0, l + 1), m = c;
   m.splice(
@@ -64,7 +68,7 @@ const B = "div.prooftree,div.prtr-proof-tree{width:fit-content;margin:20px auto}
   ), p = {
     nodeList: d,
     prtrNodeList: f,
-    beforeTextNode: r,
+    beforeTextNode: s,
     afterTextNode: a
   };
   return console.log(p), p;
@@ -83,8 +87,8 @@ const B = "div.prooftree,div.prtr-proof-tree{width:fit-content;margin:20px auto}
 }, g = (t, e) => {
   const o = t[0].nodeValue, n = o.indexOf("}");
   if (n !== -1) {
-    const r = document.createTextNode(o.slice(0, n));
-    return t[0].nodeValue = o.substring(n + 1), e.push(r), e;
+    const s = document.createTextNode(o.slice(0, n));
+    return t[0].nodeValue = o.substring(n + 1), e.push(s), e;
   } else {
     for (e.push(t.shift()); t.length > 0; )
       if (t[0].nodeType !== Node.TEXT_NODE) e.push(t.shift());
@@ -92,44 +96,44 @@ const B = "div.prooftree,div.prtr-proof-tree{width:fit-content;margin:20px auto}
         return g(t, e);
     return null;
   }
-}, v = (t) => {
+}, O = (t) => {
   const e = t.prtrNodeList;
   let o = [], n = 20;
   for (; e.length > 0 && n-- > 0 && (I(e), e.length !== 0); ) {
     if (e[0].nodeType !== Node.TEXT_NODE) return null;
-    const r = e[0].nodeValue;
-    if (r.startsWith("%")) {
-      if (e[0].nodeValue = r.substring(1), console.log("consumeComments"), !N(e)) return null;
-    } else if (r.startsWith("\\AXC{")) {
-      e[0].nodeValue = r.substring(5);
-      const s = g(e, []);
-      if (s === null) return null;
-      o.push({ type: "AXC", body: s });
-    } else if (r.startsWith("\\UIC{")) {
-      e[0].nodeValue = r.substring(5);
-      const s = g(e, []);
-      if (s === null) return null;
-      o.push({ type: "UIC", body: s });
-    } else if (r.startsWith("\\BIC{")) {
-      e[0].nodeValue = r.substring(5);
-      const s = g(e, []);
-      if (s === null) return null;
-      o.push({ type: "BIC", body: s });
-    } else if (r.startsWith("\\TIC{")) {
-      e[0].nodeValue = r.substring(5);
-      const s = g(e, []);
-      if (s === null) return null;
-      o.push({ type: "TIC", body: s });
-    } else if (r.startsWith("\\QuaternaryInfC{")) {
-      e[0].nodeValue = r.substring(16);
-      const s = g(e, []);
-      if (s === null) return null;
-      o.push({ type: "QuaternaryInfC", body: s });
-    } else if (r.startsWith("\\RightLabel{")) {
-      e[0].nodeValue = r.substring(12);
-      const s = g(e, []);
-      if (s === null) return null;
-      o.push({ type: "RightLabel", body: s });
+    const s = e[0].nodeValue;
+    if (s.startsWith("%")) {
+      if (e[0].nodeValue = s.substring(1), console.log("consumeComments"), !N(e)) return null;
+    } else if (s.startsWith("\\AXC{")) {
+      e[0].nodeValue = s.substring(5);
+      const r = g(e, []);
+      if (r === null) return null;
+      o.push({ type: "AXC", body: r });
+    } else if (s.startsWith("\\UIC{")) {
+      e[0].nodeValue = s.substring(5);
+      const r = g(e, []);
+      if (r === null) return null;
+      o.push({ type: "UIC", body: r });
+    } else if (s.startsWith("\\BIC{")) {
+      e[0].nodeValue = s.substring(5);
+      const r = g(e, []);
+      if (r === null) return null;
+      o.push({ type: "BIC", body: r });
+    } else if (s.startsWith("\\TIC{")) {
+      e[0].nodeValue = s.substring(5);
+      const r = g(e, []);
+      if (r === null) return null;
+      o.push({ type: "TIC", body: r });
+    } else if (s.startsWith("\\QuaternaryInfC{")) {
+      e[0].nodeValue = s.substring(16);
+      const r = g(e, []);
+      if (r === null) return null;
+      o.push({ type: "QuaternaryInfC", body: r });
+    } else if (s.startsWith("\\RightLabel{")) {
+      e[0].nodeValue = s.substring(12);
+      const r = g(e, []);
+      if (r === null) return null;
+      o.push({ type: "RightLabel", body: r });
     } else if (e[0].nodeValue.length === 0)
       console.log("oghi"), e.shift();
     else
@@ -139,18 +143,18 @@ const B = "div.prooftree,div.prtr-proof-tree{width:fit-content;margin:20px auto}
 }, T = (t, e, o) => {
   const n = t[0];
   if (!n) return null;
-  let r = [];
-  n.type === "RightLabel" && (t.shift(), r = n.body);
-  const s = [];
+  let s = [];
+  n.type === "RightLabel" && (t.shift(), s = n.body);
+  const r = [];
   for (let i = 0; i < o; i++) {
     const c = P(t);
     if (!c) return null;
-    s.push(c);
+    r.push(c);
   }
   return {
     type: "Sequent",
-    premises: s.reverse(),
-    rightLabel: r,
+    premises: r.reverse(),
+    rightLabel: s,
     conclusion: e
   };
 }, P = (t) => {
@@ -186,7 +190,7 @@ const B = "div.prooftree,div.prtr-proof-tree{width:fit-content;margin:20px auto}
         y("conclusion", t.conclusion)
       ]);
   }
-}, R = (t) => y("proof-tree", [E(t)]), H = 20, b = 20, W = 10, M = (t) => t.reduce((e, o) => e + o, 0), A = (t) => {
+}, R = (t) => y("proof-tree", [E(t)]), H = 20, b = 20, M = 10, W = (t) => t.reduce((e, o) => e + o, 0), A = (t) => {
   switch (t.type) {
     case "PSAxiom": {
       t.node.style.marginLeft = `${b}px`;
@@ -218,11 +222,11 @@ const B = "div.prooftree,div.prtr-proof-tree{width:fit-content;margin:20px auto}
       node: t
     };
   } else if (t.classList.contains("prtr-sequent")) {
-    const e = t.children[0], o = t.children[1], n = o.children[0], r = t.children[2], s = Array.prototype.slice.apply(e.children), i = r.children[0].offsetWidth + b * 2;
+    const e = t.children[0], o = t.children[1], n = o.children[0], s = t.children[2], r = Array.prototype.slice.apply(e.children), i = s.children[0].offsetWidth + b * 2;
     console.log("widthC", i);
-    const c = n.offsetWidth + W, h = s.map(V), l = h.map((a) => a.prtrStyleAux);
-    s.length === 0 && console.log("error: empty premises", s);
-    const u = M(l.map((a) => a.w)) + H * (l.length - 1) - l[0].mlc - l[l.length - 1].mrc;
+    const c = n.offsetWidth + M, h = r.map(V), l = h.map((a) => a.prtrStyleAux);
+    r.length === 0 && console.log("error: empty premises", r);
+    const u = W(l.map((a) => a.w)) + H * (l.length - 1) - l[0].mlc - l[l.length - 1].mrc;
     if (console.log("wpc", u), u > i) {
       const a = u, d = l[0].mlc, m = d + (u - i) / 2;
       console.log("mlc", m);
@@ -248,7 +252,7 @@ const B = "div.prooftree,div.prtr-proof-tree{width:fit-content;margin:20px auto}
         nodePremises: e,
         nodeHR: o,
         nodeLabel: n,
-        nodeConclusion: r
+        nodeConclusion: s
       };
     } else {
       const a = i, d = Math.max(l[0].mlc - (i - u) / 2, 0);
@@ -277,12 +281,12 @@ const B = "div.prooftree,div.prtr-proof-tree{width:fit-content;margin:20px auto}
         nodePremises: e,
         nodeHR: o,
         nodeLabel: n,
-        nodeConclusion: r
+        nodeConclusion: s
       };
     }
   } else
     throw console.log("error"), new RangeError();
-}, O = () => {
+}, $ = () => {
   const t = Array.from(
     document.getElementsByClassName("prtr-proof-tree")
   );
@@ -292,5 +296,6 @@ const B = "div.prooftree,div.prtr-proof-tree{width:fit-content;margin:20px auto}
   });
 };
 export {
-  q as renderProofTrees
+  B as renderProofTrees,
+  X as renderProofTreesOnLoad
 };
