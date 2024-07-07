@@ -29,11 +29,13 @@
     "msgpack-lite": "^0.1.26",
     "next": "^7.0.2",
     "next-routes": "^1.4.2",
+    "package.json": "^2.0.1",
     "plantuml-encoder": "^1.4.0",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
     "socket.io": "^2.1.1",
-    "socket.io-client": "^2.1.1"
+    "socket.io-client": "^2.1.1",
+    "tsc": "^2.0.4"
   },
   "devDependencies": {
     "@types/node": "16",
