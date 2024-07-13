@@ -236,7 +236,7 @@ export default class PreviewPage extends React.Component {
           ...DEFAULT_OPTIONS.toc,
           ...toc
         })
-        .use(renderProofTreesOnLoad);
+        .use(renderProofTreesOnLoad(100));
     }
 
     // Theme already applied
