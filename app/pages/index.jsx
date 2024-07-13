@@ -299,7 +299,7 @@ export default class PreviewPage extends React.Component {
           renderDiagram()
           renderFlowchart()
           renderDot()
-          renderProofTrees()
+          renderPT()
         }
         refreshScroll()
       })
